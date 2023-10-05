@@ -22,6 +22,10 @@ public:
 	// конструктор по умолчанию
 	BinSTree();
 
+	// конструктор с параметром
+	BinSTree(TreeNode<T>* tree);
+
+
 	// конструктор копирования
 	BinSTree(const BinSTree<T>& tree);
 
@@ -54,6 +58,15 @@ BinSTree<T>::BinSTree()
 	this->root = nullptr;
 	this->current = nullptr;
 	this->size = 0;
+}
+
+// конструктор с параметрами
+template <typename T>
+BinSTree<T>::BinSTree(TreeNode<T>* tree)
+{
+	this->root = CopyTree(tree);
+	this->current = nullptr;
+	this->size = treeCount(this->root);
 }
 
 // конструктор копирования
