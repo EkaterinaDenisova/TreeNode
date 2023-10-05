@@ -160,6 +160,14 @@ int main()
     inorderPrint(root, &printNode);
 
 
+    TreeNode<int>* t = CopyTree(root);
+    cout << "\n\nСкопированное дерево: ";
+    inorderPrint(t, &printNode);
+
+
+
+
+
 
 
 }
