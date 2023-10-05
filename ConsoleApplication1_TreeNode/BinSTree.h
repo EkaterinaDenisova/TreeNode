@@ -33,7 +33,7 @@ public:
 
 
 	// стандартные методы обработки списков
-	int Find(T& item);
+	int Find(const T& item);
 	void Insert(const T& item);
 	void Delete(const T& item);
 	void ClearList();
@@ -44,6 +44,7 @@ public:
 	// количество узлов в дереве
 	int ListSize() const;
 
+	TreeNode<T>* GetRoot();
 };
 
 // конструктор по умолчанию
@@ -115,66 +116,27 @@ int BinSTree<T>::ListSize() const {
 // возвращает уровень, на котором был найден узел
 // либо -1, если узла с искомым значением нет
 template<class T>
-int BinSTree<T>::Find(T& item) {
+int BinSTree<T>::Find(const T& item) {
 	return SearchNode(this->root, item);
 }
 
 // вставка узла
 template<class T>
 void BinSTree<T>::Insert(const T& item) {
-
-	//t - текущий узел, parent - предыдущий узел
-	TreeNode<T>* t = root, * parent = nullptr, * newNode;
-	//закончить на пустом дереве
-	while (t != nullptr)
-	{
-		//обновить указатель parent и идти направа или влево
-		parent = t;
-		if (item < t->Data())
-			t = t->Left();
-		else
-			t = t->Right();
-	}
-
-	//если родителя нет, вставить в качестве корневого узла
-	newNode = new TreeNode<T>(item, nullptr, nullptr);
-	if (parent == nullptr) {
-		root = newNode;
-
-		//присвоить указателю current адрес нового узла и увеличить size на 1
-		current = newNode;
-		size++;
-	}
-		
-	//если item меньше родительского узла, вставить в качестве левого сына
-	else if (item < parent->Data()) {
-		parent->SetLeft(newNode);
-
-		//присвоить указателю current адрес нового узла и увеличить size на 1
-		current = newNode;
-		size++;
-	}
-		
-	else if (item > parent->Data()) {
-
-		//если item больше родительского узла
-		//вставить в качесте правого сына
-		parent->SetRight(newNode);
-
-		//присвоить указателю current адрес нового узла и увеличить size на 1
-		current = newNode;
-		size++;
-	}
-
-	// если значение уже есть в дереве
-	else {
-		current = parent;
-	}
+	this->root = InsertNode(this->root, item);
+	size = treeCount(this->root);	
 }
 
 // удаление узла
 template<class T>
 void BinSTree<T>::Delete(const T& item) {
 	this->root = DeleteNode(this->root, item);
-	size--;
+	size = treeCount(this->root);
+}
+
+// Возвращает указатель на корень
+template <typename T>
+TreeNode<T>* BinSTree<T>::GetRoot()
+{
+	return this->root;
 }

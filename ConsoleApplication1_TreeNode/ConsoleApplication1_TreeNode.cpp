@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include "TreeNode.h"
+#include "BinSTree.h"
 
 using namespace std;
 
@@ -161,14 +162,70 @@ int main()
 
 
     TreeNode<int>* t = CopyTree(root);
-    cout << "\n\nСкопированное дерево: ";
+    cout << "\nСкопированное дерево: ";
     inorderPrint(t, &printNode);
 
 
 
 
+    cout << "\n\nКласс бинарного дерева поиска";
+
+    //     8
+    //    / \
+    //   3   10
+    //  / \
+    // 1   6
+    //    /
+    //   4
 
 
+    // создание дерева
+    BinSTree<int> tr;
+    // вставка
+    tr.Insert(8);
+    tr.Insert(3);
+    tr.Insert(1);
+    tr.Insert(10);
+    tr.Insert(6);
+    tr.Insert(4);
+
+    cout << "\nБинарное дерево поиска: ";
+    inorderPrint(tr.GetRoot(), &printNode);
+
+    cout << "\nКол-во узлов в дереве: " << tr.ListSize();
+
+    // поиск
+    int level1 = tr.Find(1);
+
+    cout << "\nУзел со значением 1 находится на уровне " << level1;
+
+    // удаление
+    tr.Delete(3);
+    cout << "\nПосле удаления узла со значением 3: ";
+    inorderPrint(tr.GetRoot(), &printNode);
+    cout << "\nКол-во узлов в дереве: " << tr.ListSize();
+
+    // оператор присваивания
+    BinSTree<int> tr2 = tr;
+    cout << "\n\nДерево, скопированное с помощью оператора присваивания: ";
+    inorderPrint(tr2.GetRoot(), &printNode);
+    cout << "\nКол-во узлов в дереве: " << tr2.ListSize();
+
+    tr2.Insert(12);
+    cout << "\nПосле добавления узла со значением 12 в дерево 2: ";
+    inorderPrint(tr2.GetRoot(), &printNode);
+    cout << "\nКол-во узлов в дереве: " << tr2.ListSize();
+
+    tr2 = tr;
+    cout << "\nПосле присваивания tr2 = tr1: ";
+    inorderPrint(tr2.GetRoot(), &printNode);
+    cout << "\nКол-во узлов в дереве: " << tr2.ListSize();
+
+    // конструктор присваивания
+    BinSTree<int> tr3(tr);
+    cout << "\n\nДерево, скопированное с помощью конструктора присваивания: ";
+    inorderPrint(tr3.GetRoot(), &printNode);
+    cout << "\nКол-во узлов в дереве: " << tr3.ListSize();
 
 }
 
