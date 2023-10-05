@@ -61,27 +61,27 @@ int main()
 
 
     vector<int> arr;
-    TreeToArrayNLR(root, arr, 0);
+    TreeToArrayNLR(root, arr);
     cout << "Массив из дерева (прямой обход): ";
 
-    for (int i = 0; i < count; i++) {
-        cout << arr[i] << " ";
+    for (auto& it : arr) {
+        cout << it << ' ';
     }
     arr.clear();
 
-    TreeToArrayLNR(root, arr, 0);
+    TreeToArrayLNR(root, arr);
     cout << "\nМассив из дерева (симметричный обход): ";
 
-    for (int i = 0; i < count; i++) {
-        cout << arr[i] << " ";
+    for (auto& it : arr) {
+        cout << it << ' ';
     }
     arr.clear();
 
-    TreeToArrayLRN(root, arr, 0);
+    TreeToArrayLRN(root, arr);
     cout << "\nМассив из дерева (обратный обход): ";
 
-    for (int i = 0; i < count; i++) {
-        cout << arr[i] << " ";
+    for (auto& it : arr) {
+        cout << it << ' ';
     }
     arr.clear();
 

@@ -154,65 +154,58 @@ void postorderPrint(TreeNode<T>* root, void (*func) (TreeNode<T>*))
 
 // cоздание массива на основе дерева (прямой обход)
 template <typename T>
-int TreeToArrayNLR(TreeNode<T>* root, vector<T>& arr, int i) {
-	if (root == nullptr) {
-		return i;
-	}
+void TreeToArrayNLR(TreeNode<T>* root, vector<T>& arr) {
+	if (root != nullptr) {
 
-	arr.push_back(root->Data());
-	//arr[i] = root->Data();
-	i++;
 
-	if (root->Left() != nullptr) {
-		i = TreeToArrayNLR(root->Left(), arr, i);
-	}
-	if (root->Right() != nullptr) {
-		i = TreeToArrayNLR(root->Right(), arr, i);
-	}
+		arr.push_back(root->Data());
+		//arr[i] = root->Data();
+		//i++;
 
-	return i;
+		if (root->Left() != nullptr) {
+			TreeToArrayNLR(root->Left(), arr);
+		}
+		if (root->Right() != nullptr) {
+			TreeToArrayNLR(root->Right(), arr);
+		}
+
+	}
 }
 
 // cоздание массива на основе дерева (симметричный обход)
 template <typename T>
-int TreeToArrayLNR(TreeNode<T>* root, vector<T>& arr, int i) {
-	if (root == nullptr) {
-		return i;
+void TreeToArrayLNR(TreeNode<T>* root, vector<T>& arr) {
+	if (root != nullptr) {
+
+
+		if (root->Left() != nullptr) {
+			TreeToArrayLNR(root->Left(), arr);
+		}
+
+		arr.push_back(root->Data());
+
+		if (root->Right() != nullptr) {
+			TreeToArrayLNR(root->Right(), arr);
+		}
+
 	}
-
-	if (root->Left() != nullptr) {
-		i = TreeToArrayLNR(root->Left(), arr, i);
-	}
-
-	arr.push_back(root->Data());
-	i++;
-
-	if (root->Right() != nullptr) {
-		i = TreeToArrayLNR(root->Right(), arr, i);
-	}
-
-	return i;
 }
 
 // cоздание массива на основе дерева (обратный обход)
 template <typename T>
-int TreeToArrayLRN(TreeNode<T>* root, vector<T>& arr, int i) {
-	if (root == nullptr) {
-		return i;
+void TreeToArrayLRN(TreeNode<T>* root, vector<T>& arr) {
+	if (root != nullptr) {
+
+		if (root->Left() != nullptr) {
+			TreeToArrayLRN(root->Left(), arr);
+		}
+
+		if (root->Right() != nullptr) {
+			TreeToArrayLRN(root->Right(), arr);
+		}
+
+		arr.push_back(root->Data());		
 	}
-
-	if (root->Left() != nullptr) {
-		i = TreeToArrayLRN(root->Left(), arr, i);
-	}
-
-	if (root->Right() != nullptr) {
-		i = TreeToArrayLRN(root->Right(), arr, i);
-	}
-
-	arr.push_back(root->Data());
-	i++;
-
-	return i;
 }
 
 // Нахождение глубины дерева

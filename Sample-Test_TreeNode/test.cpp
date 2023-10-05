@@ -201,19 +201,19 @@ TEST(TestTreeNode, TestToArray) {
     TreeNode<int>* root1 = createTree1();
 
     vector<int> arr, arr1 = {5, 4, 22, 12, 10, 24};
-    TreeToArrayNLR(root1, arr, 0);
+    TreeToArrayNLR(root1, arr);
     EXPECT_EQ(arr,arr1);
     arr.clear();
     arr1.clear();
 
     arr1 = { 4, 5, 10, 12, 22, 24 };
-    TreeToArrayLNR(root1, arr, 0);
+    TreeToArrayLNR(root1, arr);
     EXPECT_EQ(arr, arr1);
     arr.clear();
     arr1.clear();
 
     arr1 = { 4, 10, 12, 24, 22, 5 };
-    TreeToArrayLRN(root1, arr, 0);
+    TreeToArrayLRN(root1, arr);
     EXPECT_EQ(arr, arr1);
     arr.clear();
     arr1.clear();
@@ -222,19 +222,19 @@ TEST(TestTreeNode, TestToArray) {
     TreeNode<int>* root2 = createTree2();
     
     arr1 = { 10,19,30,33 };
-    TreeToArrayNLR(root2, arr, 0);
+    TreeToArrayNLR(root2, arr);
     EXPECT_EQ(arr, arr1);
     arr.clear();
     arr1.clear();
 
     arr1 = { 10,19,30,33 };
-    TreeToArrayLNR(root2, arr, 0);
+    TreeToArrayLNR(root2, arr);
     EXPECT_EQ(arr, arr1);
     arr.clear();
     arr1.clear();
 
     arr1 = { 33,30,19,10 };
-    TreeToArrayLRN(root2, arr, 0);
+    TreeToArrayLRN(root2, arr);
     EXPECT_EQ(arr, arr1);
     arr.clear();
     arr1.clear();
@@ -243,19 +243,19 @@ TEST(TestTreeNode, TestToArray) {
     TreeNode<int>* root3 = createTree3();
     
     arr1 = { 60,54,14 };
-    TreeToArrayNLR(root3, arr, 0);
+    TreeToArrayNLR(root3, arr);
     EXPECT_EQ(arr, arr1);
     arr.clear();
     arr1.clear();
 
     arr1 = { 14,54,60 };
-    TreeToArrayLNR(root3, arr, 0);
+    TreeToArrayLNR(root3, arr);
     EXPECT_EQ(arr, arr1);
     arr.clear();
     arr1.clear();
 
     arr1 = { 14,54,60 };
-    TreeToArrayLRN(root3, arr, 0);
+    TreeToArrayLRN(root3, arr);
     EXPECT_EQ(arr, arr1);
     arr.clear();
     arr1.clear();
@@ -265,19 +265,19 @@ TEST(TestTreeNode, TestToArray) {
     TreeNode<int>* root4 = createTree4();
     
     arr1 = { 8, 4, 2, 1, 3, 7, 5, 10, 9, 30 };
-    TreeToArrayNLR(root4, arr, 0);
+    TreeToArrayNLR(root4, arr);
     EXPECT_EQ(arr, arr1);
     arr.clear();
     arr1.clear();
 
     arr1 = { 1, 2, 3, 4, 5, 7, 8, 9, 10, 30 };
-    TreeToArrayLNR(root4, arr, 0);
+    TreeToArrayLNR(root4, arr);
     EXPECT_EQ(arr, arr1);
     arr.clear();
     arr1.clear();
 
     arr1 = { 1, 3, 2, 5, 7, 4, 9, 30, 10, 8 };
-    TreeToArrayLRN(root4, arr, 0);
+    TreeToArrayLRN(root4, arr);
     EXPECT_EQ(arr, arr1);
     arr.clear();
     arr1.clear();
@@ -286,19 +286,19 @@ TEST(TestTreeNode, TestToArray) {
     TreeNode<int>* root5 = nullptr;
 
     arr1 = { };
-    TreeToArrayNLR(root5, arr, 0);
+    TreeToArrayNLR(root5, arr);
     EXPECT_EQ(arr, arr1);
     arr.clear();
     arr1.clear();
 
     arr1 = { };
-    TreeToArrayLNR(root5, arr, 0);
+    TreeToArrayLNR(root5, arr);
     EXPECT_EQ(arr, arr1);
     arr.clear();
     arr1.clear();
 
     arr1 = { };
-    TreeToArrayLRN(root5, arr, 0);
+    TreeToArrayLRN(root5, arr);
     EXPECT_EQ(arr, arr1);
     arr.clear();
     arr1.clear();
@@ -306,19 +306,19 @@ TEST(TestTreeNode, TestToArray) {
     // дерево с одним узлом
     TreeNode<int>* root6 = new TreeNode<int>(2);
     arr1 = {2};
-    TreeToArrayNLR(root6, arr, 0);
+    TreeToArrayNLR(root6, arr);
     EXPECT_EQ(arr, arr1);
     arr.clear();
     arr1.clear();
 
     arr1 = {2};
-    TreeToArrayLNR(root6, arr, 0);
+    TreeToArrayLNR(root6, arr);
     EXPECT_EQ(arr, arr1);
     arr.clear();
     arr1.clear();
 
     arr1 = {2};
-    TreeToArrayLRN(root6, arr, 0);
+    TreeToArrayLRN(root6, arr);
     EXPECT_EQ(arr, arr1);
     arr.clear();
     arr1.clear();
