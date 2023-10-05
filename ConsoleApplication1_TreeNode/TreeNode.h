@@ -305,7 +305,7 @@ TreeNode<T>* InsertNode(TreeNode<T>* root, const T value) {
 		root->SetLeft(InsertNode(root->Left(), value));
 	}
 
-	// Return 'root' node, after insertion.
+	//возвращаем корень дерева
 	return root;
 }
 
