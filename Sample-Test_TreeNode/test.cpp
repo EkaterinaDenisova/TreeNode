@@ -433,4 +433,311 @@ TEST(TestTreeNode, TestSuccessor) {
     EXPECT_EQ(nullptr, s);
 }
 
+TEST(TestTreeNode, TestInsertNode) {
+    // создаётся указатель на корень дерева 
+    TreeNode<int>* root1 = createTree1();
+
+    root1 = InsertNode(root1, 5);
+    vector<int> arr, arr1 = { 4, 5, 10, 12, 22, 24 };
+    TreeToArrayLNR(root1, arr);
+    EXPECT_EQ(arr, arr1);
+    arr.clear();
+    //       5
+    //      / \
+    //     4   22
+    //        / \
+    //       12  24
+    //      /
+    //     10
+
+    root1 = InsertNode(root1, 6);
+    arr1 = { 4, 5, 6, 10, 12, 22, 24 };
+    TreeToArrayLNR(root1, arr);
+    EXPECT_EQ(arr, arr1);
+    arr.clear();
+
+
+    root1 = InsertNode(root1, 13);
+    arr1 = { 4, 5, 6, 10, 12, 13, 22, 24 };
+    TreeToArrayLNR(root1, arr);
+    EXPECT_EQ(arr, arr1);
+    arr.clear();
+
+
+    // вырожденное вправо
+    TreeNode<int>* root2 = createTree2();
+    root2 = InsertNode(root2, 19);
+    arr1 = { 10, 19, 30, 33 };
+    TreeToArrayLNR(root2, arr);
+    EXPECT_EQ(arr, arr1);
+    arr.clear();
+    //       10
+    //        \
+    //         19
+    //          \
+    //           30
+    //            \
+    //             33
+
+    root2 = InsertNode(root2, 20);
+    arr1 = { 10, 19, 20, 30, 33 };
+    TreeToArrayLNR(root2, arr);
+    EXPECT_EQ(arr, arr1);
+    arr.clear();
+
+
+    // вырожденное влево
+    TreeNode<int>* root3 = createTree3();
+    root3 = InsertNode(root3, 14);
+    arr1 = { 14, 54, 60 };
+    TreeToArrayLNR(root3, arr);
+    EXPECT_EQ(arr, arr1);
+    arr.clear();
+    //       60
+    //       /  
+    //      54   
+    //      /   
+    //     14  
+
+    root3 = InsertNode(root3, 52);
+    arr1 = { 14, 52, 54, 60 };
+    TreeToArrayLNR(root3, arr);
+    EXPECT_EQ(arr, arr1);
+    arr.clear();
+
+    // завершённое дерево
+    TreeNode<int>* root4 = createTree4();
+    root4 = InsertNode(root4, 2);
+    arr1 = { 1, 2, 3, 4, 5, 7, 8, 9, 10, 30 };
+    TreeToArrayLNR(root4, arr);
+    EXPECT_EQ(arr, arr1);
+    arr.clear();
+    //          8
+    //       /    \
+    //      4      10
+    //    /   \    / \
+    //   2     7   9   30
+    //  / \    /       
+    // 1   3  5 
+
+    root4 = InsertNode(root4, 6);
+    arr1 = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 30 };
+    TreeToArrayLNR(root4, arr);
+    EXPECT_EQ(arr, arr1);
+    arr.clear();
+
+    // пустое дерево
+    TreeNode<int>* root5 = nullptr;
+    root5 = InsertNode(root5, 12);
+    arr1 = { 12 };
+    TreeToArrayLNR(root5, arr);
+    EXPECT_EQ(arr, arr1);
+    arr.clear();
+
+
+    // дерево с одним узлом
+    TreeNode<int>* root6 = new TreeNode<int>(2);
+    root6 = InsertNode(root6, 15);
+    arr1 = { 2, 15 };
+    TreeToArrayLNR(root6, arr);
+    EXPECT_EQ(arr, arr1);
+    arr.clear();
+
+}
+
+TEST(TestTreeNode, TestDeleteNode) {
+    // создаётся указатель на корень дерева 
+    TreeNode<int>* root1 = createTree1();
+
+    root1 = DeleteNode(root1, 11);
+    vector<int> arr, arr1 = { 4, 5, 10, 12, 22, 24 };
+    TreeToArrayLNR(root1, arr);
+    EXPECT_EQ(arr, arr1);
+    arr.clear();
+    //       5
+    //      / \
+    //     4   22
+    //        / \
+    //       12  24
+    //      /
+    //     10
+
+    root1 = DeleteNode(root1, 5);
+    arr1 = { 4, 10, 12, 22, 24 };
+    TreeToArrayLNR(root1, arr);
+    EXPECT_EQ(arr, arr1);
+    arr.clear();
+
+
+    root1 = DeleteNode(root1, 10);
+    arr1 = { 4, 12, 22, 24 };
+    TreeToArrayLNR(root1, arr);
+    EXPECT_EQ(arr, arr1);
+    arr.clear();
+
+
+    // вырожденное вправо
+    TreeNode<int>* root2 = createTree2();
+    root2 = DeleteNode(root2, 20);
+    arr1 = { 10, 19, 30, 33 };
+    TreeToArrayLNR(root2, arr);
+    EXPECT_EQ(arr, arr1);
+    arr.clear();
+    //       10
+    //        \
+    //         19
+    //          \
+    //           30
+    //            \
+    //             33
+
+    root2 = DeleteNode(root2, 30);
+    arr1 = { 10, 19, 33 };
+    TreeToArrayLNR(root2, arr);
+    EXPECT_EQ(arr, arr1);
+    arr.clear();
+
+
+    // вырожденное влево
+    TreeNode<int>* root3 = createTree3();
+    root3 = DeleteNode(root3, 13);
+    arr1 = { 14, 54, 60 };
+    TreeToArrayLNR(root3, arr);
+    EXPECT_EQ(arr, arr1);
+    arr.clear();
+    //       60
+    //       /  
+    //      54   
+    //      /   
+    //     14  
+
+    root3 = DeleteNode(root3, 60);
+    arr1 = { 14, 54 };
+    TreeToArrayLNR(root3, arr);
+    EXPECT_EQ(arr, arr1);
+    arr.clear();
+
+    // завершённое дерево
+    TreeNode<int>* root4 = createTree4();
+    root4 = DeleteNode(root4, 6);
+    arr1 = { 1, 2, 3, 4, 5, 7, 8, 9, 10, 30 };
+    TreeToArrayLNR(root4, arr);
+    EXPECT_EQ(arr, arr1);
+    arr.clear();
+    //          8
+    //       /    \
+    //      4      10
+    //    /   \    / \
+    //   2     7   9   30
+    //  / \    /       
+    // 1   3  5 
+
+    root4 = DeleteNode(root4, 8);
+    arr1 = { 1, 2, 3, 4, 5, 7,  9, 10, 30 };
+    TreeToArrayLNR(root4, arr);
+    EXPECT_EQ(arr, arr1);
+    arr.clear();
+
+    root4 = DeleteNode(root4, 7);
+    arr1 = { 1, 2, 3, 4, 5, 9, 10, 30 };
+    TreeToArrayLNR(root4, arr);
+    EXPECT_EQ(arr, arr1);
+    arr.clear();
+
+    root4 = DeleteNode(root4, 1);
+    arr1 = { 2, 3, 4, 5, 9, 10, 30 };
+    TreeToArrayLNR(root4, arr);
+    EXPECT_EQ(arr, arr1);
+    arr.clear();
+
+    // пустое дерево
+    TreeNode<int>* root5 = nullptr;
+    root5 = DeleteNode(root5, 12);
+    arr1 = { };
+    TreeToArrayLNR(root5, arr);
+    EXPECT_EQ(arr, arr1);
+    arr.clear();
+
+
+    // дерево с одним узлом
+    TreeNode<int>* root6 = new TreeNode<int>(2);
+    root6 = DeleteNode(root6, 15);
+    arr1 = { 2 };
+    TreeToArrayLNR(root6, arr);
+    EXPECT_EQ(arr, arr1);
+    arr.clear();
+
+    root6 = DeleteNode(root6, 2);
+    arr1 = {  };
+    TreeToArrayLNR(root6, arr);
+    EXPECT_EQ(arr, arr1);
+    arr.clear();
+
+}
+
+
+TEST(TestTreeNode, TestCopyTree) {
+    vector<int> arr, arr1;
+
+    // создаётся указатель на корень дерева 
+    TreeNode<int>* root1 = createTree1();
+    TreeNode<int>* tmp = CopyTree(root1);
+    
+    TreeToArrayNLR(root1, arr);
+    TreeToArrayNLR(tmp, arr1);
+    EXPECT_EQ(arr, arr1);
+    arr.clear(); arr1.clear();
+    deleteTree(tmp);
+
+    // вырожденное вправо
+    TreeNode<int>* root2 = createTree2();
+    tmp = CopyTree(root2);
+
+    TreeToArrayNLR(root2, arr);
+    TreeToArrayNLR(tmp, arr1);
+    EXPECT_EQ(arr, arr1);
+    arr.clear(); arr1.clear();
+    deleteTree(tmp);
+
+    // вырожденное влево
+    TreeNode<int>* root3 = createTree3();
+    tmp = CopyTree(root3);
+
+    TreeToArrayNLR(root3, arr);
+    TreeToArrayNLR(tmp, arr1);
+    EXPECT_EQ(arr, arr1);
+    arr.clear(); arr1.clear();
+    deleteTree(tmp);
+
+    // завершённое дерево
+    TreeNode<int>* root4 = createTree4();
+    tmp = CopyTree(root4);
+
+    TreeToArrayNLR(root4, arr);
+    TreeToArrayNLR(tmp, arr1);
+    EXPECT_EQ(arr, arr1);
+    arr.clear(); arr1.clear();
+    deleteTree(tmp);
+
+    // пустое дерево
+    TreeNode<int>* root5 = nullptr;
+    tmp = CopyTree(root5);
+
+    TreeToArrayNLR(root5, arr);
+    TreeToArrayNLR(tmp, arr1);
+    EXPECT_EQ(arr, arr1);
+    arr.clear(); arr1.clear();
+    deleteTree(tmp);
+
+    // дерево с одним узлом
+    TreeNode<int>* root6 = new TreeNode<int>(2);
+    tmp = CopyTree(root6);
+
+    TreeToArrayNLR(root6, arr);
+    TreeToArrayNLR(tmp, arr1);
+    EXPECT_EQ(arr, arr1);
+    arr.clear(); arr1.clear();
+    deleteTree(tmp);
+
+}
 

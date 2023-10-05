@@ -227,5 +227,10 @@ int main()
     inorderPrint(tr3.GetRoot(), &printNode);
     cout << "\nКол-во узлов в дереве: " << tr3.ListSize();
 
+    // очистка дерева
+    tr3.ClearList();
+    if (tr3.GetRoot() == nullptr) {
+        cout << "\nДерево tr3 успешно очищено";
+    }
 }
 
