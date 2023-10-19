@@ -1051,3 +1051,132 @@ TEST(TestBinSTree, TestInsert) {
     
 }
 
+TEST(TestBinSTree, TestDelete) {
+    // создаётся указатель на корень дерева 
+    BinSTree<int> tr1(createTree1());
+
+    tr1.Delete(11);
+    vector<int> arr, arr1 = { 4, 5, 10, 12, 22, 24 };
+    TreeToArrayLNR(tr1.GetRoot(), arr);
+    EXPECT_EQ(arr, arr1);
+    arr.clear();
+    //       5
+    //      / \
+    //     4   22
+    //        / \
+    //       12  24
+    //      /
+    //     10
+
+    tr1.Delete(5);
+    arr1 = { 4, 10, 12, 22, 24 };
+    TreeToArrayLNR(tr1.GetRoot(), arr);
+    EXPECT_EQ(arr, arr1);
+    arr.clear();
+
+
+    tr1.Delete(10);
+    arr1 = { 4, 12, 22, 24 };
+    TreeToArrayLNR(tr1.GetRoot(), arr);
+    EXPECT_EQ(arr, arr1);
+    arr.clear();
+
+
+    // вырожденное вправо
+    BinSTree<int> tr2(createTree2());
+    tr2.Delete(20);
+    arr1 = { 10, 19, 30, 33 };
+    TreeToArrayLNR(tr2.GetRoot(), arr);
+    EXPECT_EQ(arr, arr1);
+    arr.clear();
+    //       10
+    //        \
+    //         19
+    //          \
+    //           30
+    //            \
+    //             33
+
+    tr2.Delete(30);
+    arr1 = { 10, 19, 33 };
+    TreeToArrayLNR(tr2.GetRoot(), arr);
+    EXPECT_EQ(arr, arr1);
+    arr.clear();
+
+
+    // вырожденное влево
+    BinSTree<int> tr3(createTree3());
+    tr3.Delete(13);
+    arr1 = { 14, 54, 60 };
+    TreeToArrayLNR(tr3.GetRoot(), arr);
+    EXPECT_EQ(arr, arr1);
+    arr.clear();
+    //       60
+    //       /  
+    //      54   
+    //      /   
+    //     14  
+
+    tr3.Delete(60);
+    arr1 = { 14, 54 };
+    TreeToArrayLNR(tr3.GetRoot(), arr);
+    EXPECT_EQ(arr, arr1);
+    arr.clear();
+
+    // завершённое дерево
+    BinSTree<int> tr4(createTree4());
+    tr4.Delete(6);
+    arr1 = { 1, 2, 3, 4, 5, 7, 8, 9, 10, 30 };
+    TreeToArrayLNR(tr4.GetRoot(), arr);
+    EXPECT_EQ(arr, arr1);
+    arr.clear();
+    //          8
+    //       /    \
+    //      4      10
+    //    /   \    / \
+    //   2     7   9   30
+    //  / \    /       
+    // 1   3  5 
+
+    tr4.Delete(8);
+    arr1 = { 1, 2, 3, 4, 5, 7,  9, 10, 30 };
+    TreeToArrayLNR(tr4.GetRoot(), arr);
+    EXPECT_EQ(arr, arr1);
+    arr.clear();
+
+    tr4.Delete(7);
+    arr1 = { 1, 2, 3, 4, 5, 9, 10, 30 };
+    TreeToArrayLNR(tr4.GetRoot(), arr);
+    EXPECT_EQ(arr, arr1);
+    arr.clear();
+
+    tr4.Delete(1);
+    arr1 = { 2, 3, 4, 5, 9, 10, 30 };
+    TreeToArrayLNR(tr4.GetRoot(), arr);
+    EXPECT_EQ(arr, arr1);
+    arr.clear();
+
+    // пустое дерево
+    BinSTree<int> tr5;
+    tr5.Delete(12);
+    arr1 = { };
+    TreeToArrayLNR(tr5.GetRoot(), arr);
+    EXPECT_EQ(arr, arr1);
+    arr.clear();
+
+
+    // дерево с одним узлом
+    BinSTree<int> tr6(new TreeNode<int>(2));
+    tr6.Delete(15);
+    arr1 = { 2 };
+    TreeToArrayLNR(tr6.GetRoot(), arr);
+    EXPECT_EQ(arr, arr1);
+    arr.clear();
+
+    tr6.Delete(2);
+    arr1 = {  };
+    TreeToArrayLNR(tr6.GetRoot(), arr);
+    EXPECT_EQ(arr, arr1);
+    arr.clear();
+
+}

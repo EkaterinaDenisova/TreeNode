@@ -474,3 +474,29 @@ TreeNode<T>* CopyTree(TreeNode<T>* t) {
 	return newnode;
 
 }
+
+// печать используя обход в ширину
+template <typename T>
+void BFS(TreeNode<T>* root)
+{
+	// если дерево не пустое
+	if (root != nullptr) {
+		queue <TreeNode<T>*> q;
+		// сохраняем корень в очередь
+		q.push(root);
+
+		// пока очередь не пустая
+		while (!q.empty()) {
+			// извлекаем первый элемент из очереди и выводим его
+			TreeNode<T>* node = q.front();
+			cout << node->Data() << " ";
+			q.pop(); // удаляем первый элемент из очереди
+
+			// добавляем в очередь левого и правого потомка (если существуют)
+			if (node->Left() != nullptr)
+				q.push(node->Left());
+			if (node->Right() != nullptr)
+				q.push(node->Right());
+		}
+	}
+}
