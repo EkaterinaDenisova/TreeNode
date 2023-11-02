@@ -4,6 +4,7 @@
 // класс узла бинарного дерева
 #include <iostream>
 #include <vector>
+#include <queue>
 
 using namespace std;
 
@@ -50,7 +51,7 @@ public:
 // конструктор инициализирует поля данных и указателей
 // значение nullptr соответствует пустому поддереву
 template <typename T>
-TreeNode<T>::TreeNode(const T& item, TreeNode<T>* lptr, TreeNode<T>* rptr) 
+TreeNode<T>::TreeNode(const T& item, TreeNode<T>* lptr, TreeNode<T>* rptr)
 {
 	data = item;
 	left = lptr;
@@ -104,7 +105,7 @@ void printNode(TreeNode<T>* root) {
 // функция добавления единицы к значению узла
 template <typename T>
 void add1(TreeNode<T>* root) {
-	root->SetData(root->Data()+1);
+	root->SetData(root->Data() + 1);
 }
 
 // функция возведения в квадрат значения узла
@@ -204,7 +205,7 @@ void TreeToArrayLRN(TreeNode<T>* root, vector<T>& arr) {
 			TreeToArrayLRN(root->Right(), arr);
 		}
 
-		arr.push_back(root->Data());		
+		arr.push_back(root->Data());
 	}
 }
 
@@ -216,14 +217,14 @@ int treeHeight(TreeNode<T>* root) {
 	if (root == nullptr)
 		height = -1;
 	else {
-		
+
 		// находим глубину левого и правого поддеревьев
 		// рекурсивный вызов функции treeHeight
 		left_height = treeHeight(root->Left());
 		right_height = treeHeight(root->Right());
 
 		// Находим максимальное из поддеревьев
-		height = max(left_height, right_height)+1;
+		height = max(left_height, right_height) + 1;
 	}
 	return height;
 }
@@ -275,12 +276,12 @@ int SearchNode(TreeNode<T>* root, const T key, int depth = 0) {
 	if (key > root->Data()) {
 		SearchNode(root->Right(), key, depth + 1);
 	}
-		
+
 	// поиск в левом поддереве
 	else if (key < root->Data()) {
 		SearchNode(root->Left(), key, depth + 1);
 	}
-	
+
 	// если key равен значению в текущем узле
 	else return depth;
 }
@@ -412,7 +413,7 @@ TreeNode<T>* DeleteNode(TreeNode<T>* root, const T value) {
 
 		// данные из ближайшего наибольшего переносятся на место удаляемого узла
 		root->SetData(succ->Data());
-		
+
 		// Удаляем ближайшее наибольшее
 		delete succ;
 		return root;
@@ -500,3 +501,4 @@ void BFS(TreeNode<T>* root)
 		}
 	}
 }
+
