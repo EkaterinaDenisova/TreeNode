@@ -40,7 +40,7 @@ public:
 
 	// возвращает уровень, на котором находится искомый узел
 	// либо -1, если узла с таким значением в дереве нет
-	int Find(const T& item);
+	int Find(const T& item) const;
 	void Insert(const T& item);
 	void Delete(const T& item);
 	void ClearList();
@@ -51,7 +51,7 @@ public:
 	// количество узлов в дереве
 	int ListSize() const;
 
-	TreeNode<T>* GetRoot();
+	TreeNode<T>* GetRoot() const;
 };
 
 // конструктор по умолчанию
@@ -132,7 +132,7 @@ int BinSTree<T>::ListSize() const {
 // возвращает уровень, на котором был найден узел
 // либо -1, если узла с искомым значением нет
 template<class T>
-int BinSTree<T>::Find(const T& item) {
+int BinSTree<T>::Find(const T& item) const {
 	return SearchNode(this->root, item);
 }
 
@@ -152,7 +152,7 @@ void BinSTree<T>::Delete(const T& item) {
 
 // Возвращает указатель на корень
 template <typename T>
-TreeNode<T>* BinSTree<T>::GetRoot()
+TreeNode<T>* BinSTree<T>::GetRoot() const
 {
 	return this->root;
 }
